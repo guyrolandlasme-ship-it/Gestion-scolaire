@@ -1,0 +1,107 @@
+import 'package:flutter/material.dart';
+class StudentRegistrationScreen extends StatefulWidget {
+const StudentRegistrationScreen({super.key});
+@override
+State<StudentRegistrationScreen> createState() => _StudentRegistrationScreenState();
+}
+class _StudentRegistrationScreenState extends State<StudentRegistrationScreen> {
+final _formKey = GlobalKey<FormState>();
+final _nameController = TextEditingController();
+final _emailController = TextEditingController();
+final _classController = TextEditingController();
+final _parentEmailController = TextEditingController();
+void _registerStudent() {
+if (_formKey.currentState!.validate()) {
+// Logique pour enregistrer l'élève
+ScaffoldMessenger.of(context).showSnackBar(
+const SnackBar(content: Text('Élève enregistré avec succès !')),
+);
+}
+}
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: const Text('Enregistrer un Élève'),
+),
+body: Padding(
+padding: const EdgeInsets.all(16.0),
+child: Form(
+key: _formKey,
+child: ListView(
+children: [
+TextFormField(
+controller: _nameController,
+decoration: const InputDecoration(
+labelText: 'Nom de l'élève',
+border: OutlineInputBorder(),
+prefixIcon: Icon(Icons.person),
+),
+validator: (value) {
+if (value == null || value.isEmpty) {
+return 'Veuillez entrer le nom de l'élève.';
+}
+return null;
+},
+),
+const SizedBox(height: 16),
+TextFormField(
+controller: _emailController,
+decoration: const InputDecoration(
+labelText: 'Email de l'élève',
+border: OutlineInputBorder(),
+prefixIcon: Icon(Icons.email),
+),
+validator: (value) {
+if (value == null || value.isEmpty) {
+return 'Veuillez entrer l'email de l'élève.';
+}
+return null;
+},
+),
+const SizedBox(height: 16),
+TextFormField(
+controller: _classController,
+decoration: const InputDecoration(
+labelText: 'Classe',
+border: OutlineInputBorder(),
+prefixIcon: Icon(Icons.school),
+),
+validator: (value) {
+if (value == null || value.isEmpty) {
+return 'Veuillez entrer la classe.';
+}
+return null;
+},
+),
+const SizedBox(height: 16),
+TextFormField(
+controller: _parentEmailController,
+decoration: const InputDecoration(
+labelText: 'Email du parent',
+border: OutlineInputBorder(),
+prefixIcon: Icon(Icons.family_restroom),
+),
+validator: (value) {
+if (value == null || value.isEmpty) {
+return 'Veuillez entrer l'email du parent.';
+}
+return null;
+},
+),
+const SizedBox(height: 32),
+ElevatedButton(
+onPressed: _registerStudent,
+style: ElevatedButton.styleFrom(
+padding: const EdgeInsets.symmetric(vertical: 16),
+),
+child: const Text('Enregistrer'),
+),
+],
+),
+),
+),
+);
+}
+}
+
