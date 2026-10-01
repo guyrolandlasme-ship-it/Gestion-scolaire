@@ -1,0 +1,83 @@
+import 'package:flutter/material.dart';
+class LoginScreen extends StatefulWidget {
+const LoginScreen({super.key});
+@override
+State<LoginScreen> createState() => _LoginScreenState();
+}
+class _LoginScreenState extends State<LoginScreen> {
+final TextEditingController _idController = TextEditingController();
+final TextEditingController _passwordController = TextEditingController();
+bool _isPasswordVisible = false;
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+body: Center(
+child: SingleChildScrollView(
+padding: const EdgeInsets.all(16.0),
+child: Column(
+mainAxisAlignment: MainAxisAlignment.center,
+children: [
+const Text(
+'Groupe Scolaire Test',
+style: TextStyle(
+fontSize: 24,
+fontWeight: FontWeight.bold,
+),
+),
+const SizedBox(height: 32),
+Image.asset(
+'assets/logo.png', // Assurez-vous que le logo est dans votre dossier assets
+height: 100,
+),
+const SizedBox(height: 32),
+TextField(
+controller: _idController,
+decoration: const InputDecoration(
+labelText: 'Identifiant',
+border: OutlineInputBorder(),
+prefixIcon: Icon(Icons.person),
+),
+),
+const SizedBox(height: 16),
+TextField(
+controller: _passwordController,
+obscureText: !_isPasswordVisible,
+decoration: InputDecoration(
+labelText: 'Mot de passe',
+border: const OutlineInputBorder(),
+prefixIcon: const Icon(Icons.lock),
+suffixIcon: IconButton(
+icon: Icon(
+_isPasswordVisible
+? Icons.visibility
+: Icons.visibility_off,
+),
+onPressed: () {
+setState(() {
+_isPasswordVisible = !_isPasswordVisible;
+});
+},
+),
+),
+),
+const SizedBox(height: 32),
+ElevatedButton(
+onPressed: () {
+// Logique de connexion et de vérification des rôles à venir
+},
+style: ElevatedButton.styleFrom(
+minimumSize: const Size(double.infinity, 50),
+),
+child: const Text(
+'Connexion',
+style: TextStyle(fontSize: 18),
+),
+),
+],
+),
+),
+),
+);
+}
+}
+
