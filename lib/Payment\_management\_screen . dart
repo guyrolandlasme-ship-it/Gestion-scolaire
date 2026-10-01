@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+class PaymentManagementScreen extends StatefulWidget {
+const PaymentManagementScreen({super.key});
+@override
+State<PaymentManagementScreen> createState() => _PaymentManagementScreenState();
+}
+class _PaymentManagementScreenState extends State<PaymentManagementScreen> {
+final _formKey = GlobalKey<FormState>();
+final _studentIdController = TextEditingController();
+final _amountController = TextEditingController();
+final _paymentTypeController = TextEditingController();
+void _recordPayment() {
+if (_formKey.currentState!.validate()) {
+// Logique pour enregistrer le paiement
+ScaffoldMessenger.of(context).showSnackBar(
+const SnackBar(content: Text('Paiement enregistré avec succès !')),
+);
+}
+}
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: const Text('Gestion des Encaissements'),
+),
+body: Padding(
+padding: const EdgeInsets.all(16.0),
+child: Form(
+key: _formKey,
+child: ListView(
+children: [
+TextFormField(
+controller: _studentIdController,
+decoration: const InputDecoration(
+labelText: 'Identifiant de l'élève',
+border: OutlineInputBorder(),
+prefixIcon: Icon(Icons.badge),
+),
+validator: (value) {
+if (value == null || value.isEmpty) {
+return 'Veuillez entrer l'identifiant de l'élève.';
+}
+return null;
+},
+),
+const SizedBox(height: 16),
+TextFormField(
+controller: _amountController,
+decoration: const InputDecoration(
+labelText: 'Montant',
+border: OutlineInputBorder(),
+prefixIcon: Icon(Icons.attach_money),
+),
+keyboardType: TextInputType.number,
+validator: (value) {
+if (value == null || value.isEmpty) {
+return 'Veuillez entrer le montant.';
+}
+return null;
+},
+),
+const SizedBox(height: 16),
+TextFormField(
+controller: _paymentTypeController,
+decoration: const InputDecoration(
+labelText: 'Type de paiement',
+border: OutlineInputBorder(),
+prefixIcon: Icon(Icons.payment),
+),
+validator: (value) {
+if (value == null || value.isEmpty) {
+return 'Veuillez entrer le type de paiement.';
+}
+return null;
+},
+),
+const SizedBox(height: 32),
+ElevatedButton(
+onPressed: _recordPayment,
+style: ElevatedButton.styleFrom(
+padding: const EdgeInsets.symmetric(vertical: 16),
+),
+child: const Text('Enregistrer le paiement'),
+),
+],
+),
+),
+),
+);
+}
+}
+
