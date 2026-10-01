@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+class AccountantDashboardScreen extends StatelessWidget {
+const AccountantDashboardScreen({super.key});
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: const Text('Tableau de bord - Comptabilité'),
+),
+body: Padding(
+padding: const EdgeInsets.all(16.0),
+child: Column(
+crossAxisAlignment: CrossAxisAlignment.stretch,
+children: [
+ElevatedButton.icon(
+icon: const Icon(Icons.person_add),
+label: const Text('Enregistrer un élève'),
+onPressed: () {
+// Naviguer vers l'écran d'enregistrement d'un élève
+},
+style: ElevatedButton.styleFrom(
+padding: const EdgeInsets.symmetric(vertical: 16),
+),
+),
+const SizedBox(height: 16),
+ElevatedButton.icon(
+icon: const Icon(Icons.monetization_on),
+label: const Text('Gérer les encaissements'),
+onPressed: () {
+// Naviguer vers l'écran de gestion des encaissements
+},
+style: ElevatedButton.styleFrom(
+padding: const EdgeInsets.symmetric(vertical: 16),
+),
+),
+],
+),
+),
+);
+}
+}
+
